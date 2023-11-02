@@ -53,6 +53,7 @@ const imageArray = [
 const Gallery = () => {
 	const [image,setImage]=useState(imageArray);
 	const [selected,setSelected]=useState([]);
+
 	// handle select
 const handleSelected=(e)=>{
 	const { value, checked } = e.target;
@@ -66,7 +67,7 @@ const handleSelected=(e)=>{
 const handleDelete=()=>{
 	// Filter out the selected images and update the state
 	const updatedImage = image.filter(img => !selected.includes(img.id));
-	console.log(updatedImage)
+	setImage(updatedImage)
 	// Clear the selected state
 	setSelected([]);
 }
