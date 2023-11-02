@@ -27,6 +27,29 @@ body{
 
 
 }
+/* checkbox hover  */
+#single-image:hover input[type="checkbox"]{
+	opacity: 1;
+}
+#single-image input:checked {
+	display: block;
+	opacity: 1;
+}
+  #single-image::after {
+	content: "";
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.5);
+	top: 0;
+	left: 0;
+	opacity: 0;
+	height: 100%;
+	border-radius: 10px;
+	transition: all 0.1s ease-in-out;
+  }
+  
+  #single-image:hover::after {
+	opacity: 1;
+  } 
 /* first child span size */
 #single-image:nth-child(1){
 	grid-area: 1 / 1/ 3 / 3;
