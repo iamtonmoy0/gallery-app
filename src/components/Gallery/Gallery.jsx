@@ -86,18 +86,21 @@ console.log(image)
 			</div>
 			}
 			<hr />
-			<div className=" w-11/12 mx-auto py-6 " id="gallery">
+			<div  className=" w-11/12 mx-auto py-6 " id="gallery">
 			{image.map((img,index)=>
-			<div key={img.id} className={`item-no-${index+1}`} id="single-image">
-				{/* input */}
+			<div  key={img.id} className={`item-no-${index+1}`} id="single-image">
+					<div className=" relative hover:brightness-[60%] hover:bg-slate-100 rounded-[20px]">
+						{/* input */}
 				<input
 				type="checkbox"
 				value={img.id}
-				className="absolute mt-5 ml-5 cursor-pointer opacity-0"
+				className="absolute mt-5 ml-5 cursor-pointer opacity-0 "
 				onChange={handleSelected}
 				/>
+
 				{/* image */}
 				<img  src={img.src} className=""/>
+				</div>
 			</div>
 			)}
 			{/* add image */}
