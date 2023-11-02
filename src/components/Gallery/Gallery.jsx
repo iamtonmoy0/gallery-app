@@ -24,16 +24,14 @@ const Gallery = () => {
 			</div>
 			)}
 			{/* add image */}
-			<div id="gallery-item-12" className="rounded-xl  outline-1 outline-dashed  outline-gray-300 flex flex-col bg-gray-300">
+			<div className="rounded-xl  outline-1 outline-dashed outline-gray-300 bg-gray-300 flex items-center justify-center h-full">
   <label htmlFor="file-input" className="cursor-pointer text-center">
-   <PiImageBold className='text-3xl ml-20 mt-20 font-light'/> 
-	<p className="font-semibold pt-2">
-    Add Images
-
-	</p>
+    <PiImageBold className="text-3xl font-light ml-6" />
+    <p className="font-semibold pt-2">Add Images</p>
   </label>
   <input type="file" id="file-input" className="hidden" />
 </div>
+
 			</div>
 
 		</div>
