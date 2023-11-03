@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {PiImageBold} from 'react-icons/pi'
 import {ImCheckboxChecked} from 'react-icons/im'
 
@@ -53,7 +53,8 @@ const imageArray = [
 const Gallery = () => {
 	const [image,setImage]=useState(imageArray);
 	const [selected,setSelected]=useState([]);
-
+	const dragImage = useRef(null);
+	const draggedOverImage = useRef(null);
 	// handle select
 const handleSelected=(e)=>{
 	const { value, checked } = e.target;
@@ -71,8 +72,28 @@ const handleDelete=()=>{
 	// Clear the selected state
 	setSelected([]);
 }
-console.log(selected)
-console.log(image)
+
+
+// handle drag start
+const handleOnDragStart = (index)=>{
+	if(dragImage.current === index) return;
+	const updatedGallery = [...image];
+	let dragIndex = updatedGallery[dragImage.current];
+	updatedGallery.splice(dragImage.current,1);
+	updatedGallery.splice(index,0,dragIndex);
+	setImage(updatedGallery);
+	dragImage.current=index
+
+}
+// handel drag end 
+const handleOnDragEnd = () =>{
+	const draggedItem = document.querySelector(".single-image.dragging");
+    if (draggedItem) {
+      draggedItem.classList.remove("dragging");
+    }
+}
+// console.log(selected)
+// console.log(image)
 	return (
 		<div className="bg-white w-11/12 mx-auto  rounded-md h-auto mt-14">
 			{selected && selected.length > 0 ?
@@ -88,7 +109,18 @@ console.log(image)
 			<hr />
 			<div  className=" w-11/12 mx-auto py-6 " id="gallery">
 			{image.map((img,index)=>
-			<div  key={img.id} className={`item-no-${index+1}`} id="single-image">
+			<div  
+			draggable
+			onDragStart={(e) => {
+				e.dataTransfer.setData('text/plain', index.toString());
+				dragImage.current = index;
+			}}
+			onDragEnter={()=>handleOnDragStart(index)}
+			onDragEnd={handleOnDragEnd}
+			onDragOver={e=>e.preventDefault()}
+			key={img.id} className={`single-image item-no-${index+1} ${
+                dragImage.current === index ? "dragging" : ""
+              } ${draggedOverImage.current === index ? "drag-over" : ""}`} id="single-image">
 					<div className=" relative hover:brightness-[60%] hover:bg-slate-100 rounded-[20px]">
 						{/* input */}
 				<input
