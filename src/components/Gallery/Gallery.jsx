@@ -118,6 +118,7 @@ const handleOnDragEnd = () =>{
 			onDragEnter={()=>handleOnDragStart(index)}
 			onDragEnd={handleOnDragEnd}
 			onDragOver={e=>e.preventDefault()}
+			
 			key={img.id} className={`single-image item-no-${index+1} ${
                 dragImage.current === index ? "dragging" : ""
               } ${draggedOverImage.current === index ? "drag-over" : ""}`} id="single-image">
